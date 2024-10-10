@@ -1,4 +1,15 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ReservationSystem.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+// Configure the services to use ReservationDbContext with SQL Server
+builder.Services.AddDbContext<ReservationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
