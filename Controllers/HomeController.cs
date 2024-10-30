@@ -18,7 +18,22 @@ namespace ReservationSystem.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Booking()
+        {
+            return View();
+        }
+
+        public IActionResult Menu()
+        {
+            return View();
+        }
+
+        public IActionResult Events()
+        {
+            return View();
+        }
+
+        public IActionResult AboutUs()
         {
             return View();
         }
