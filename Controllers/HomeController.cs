@@ -33,7 +33,7 @@ namespace ReservationSystem.Controllers
             return View();
         }
 
-        public IActionResult AboutUs()
+        public IActionResult OrderOnline()
         {
             return View();
         }
