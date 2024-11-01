@@ -13,12 +13,26 @@
     /*font-style: normal;*/
 }
 
-/*@font-face {
+@font-face {
     font-family: 'Baloo Tammudu 2';
     src: url('/fonts/BalooTammudu2-Bold.ttf') format('truetype');
-    font-weight: 700;*/ /* Bold */
-    /*font-style: normal;
-}*/
+    font-weight: 700;  Bold 
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Koulen Regular';
+    src: url('/fonts/Koulen-Regular.ttf') format('truetype');
+    font-weight: 400;
+    /*font-style: normal;*/
+}
+
+@font-face {
+    font-family: 'Bungee Shade';
+    src: url('/fonts/BungeeShade-Regular.ttf') format('truetype');
+    font-weight: 700;
+}
+
 body {
     font-family: 'Baloo Tammudu 2', cursive;
     background-color: var(--background-color) !important;
@@ -32,11 +46,13 @@ body {
 .navbar-light .navbar-brand {
     color: var(--background-color) !important;
     font-weight: bold;
+    font-family: 'Bungee Shade', cursive;
 }
 
 .navbar-light .navbar-nav .nav-link {
     color: var(--background-color) !important;
-    font-weight: 500;
+    font-weight: 400;
+    font-family: 'Koulen Regular', cursive;
 }
 
     .navbar-light .navbar-nav .nav-link:hover {
@@ -51,23 +67,24 @@ footer {
 
 h1, h2 {
     color: var(--primary-color);
-
+    font-weight: bold;
+    font-family: 'Koulen Regular', cursive;
 }
 
 p {
     color: var(--text-color);
 }
 
-/*button, .btn {
-    background-color: var(--secondary-accent-color) !important;
+button, .btn {
+    background-color: var(--primary-color) !important;
     color: var(--background-color) !important;
     border: none;
-}*/
+}
 
-    /*button:hover, .btn:hover {
-        background-color: var(--primary-color) !important;
+    button:hover, .btn:hover {
+        background-color: var(--secondary-accent-color) !important;
         color: var(--background-color) !important;
-    }*/
+    }
 
 .text-center {
     padding: 20px;

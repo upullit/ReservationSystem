@@ -44,4 +44,17 @@ namespace ReservationSystem.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
+    public class MemberController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult OrderOnline()
+        {
+            return View();
+        }
+    }
+
 }

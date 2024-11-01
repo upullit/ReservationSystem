@@ -3,72 +3,106 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Making a reservation at Bean Scene allows us to prepare for your visit and provide you with the best service possible. Whether you’re planning a casual brunch, a family dinner, or a catch-up with friends, booking a table in advance helps us ensure you have the best experience with us.</p>
+<p> Making a reservation allows us to prepare for your arrival, ensuring that we provide you with the highest level of service and a memorable dining experience. Our team is dedicated to creating a welcoming atmosphere, filled with laughter and the delightful aroma of delicious food. Whether you’re planning a casual brunch with friends, a cozy family dinner, or a special occasion celebration, booking a table in advance helps us ensure that every detail is taken care of, so you can relax and enjoy your time with us.</p>
 
-<form>
-    <div class="mb-3">
-        <select class="form-select" aria-label="Party Size">
-            <option selected>Party Size</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <select class="form-select" aria-label="sitting">
-            <option selected>Sitting Time</option>
-            <option value="7:00am">7:00am</option>
-            <option value="7:30am">7:30am</option>
-            <option value="8:00am">8:00am</option>
-            <option value="8:30am">8:30am</option>
-            <option value="9:00am">9:00am</option>
-            <option value="9:30am">9:30am</option>
-            <option value="10:00am">10:00am</option>
-            <option value="10:30am">10:30am</option>
-            <option value="11:00am">11:00am</option>
-            <option value="11:30am">11:30am</option>
-            <option value="12:00pm">12:00pm</option>
-            <option value="12:30pm">12:30pm</option>
-            <option value="1:00pm">1:00pm</option>
-            <option value="1:30pm">1:30pm</option>
-            <option value="2:00pm">2:00pm</option>
-            <option value="2:30pm">2:30pm</option>
-            <option value="3:00pm">3:00pm</option>
-            <option value="3:30pm">3:30pm</option>
-            <option value="4:00pm">4:00pm</option>
-            <option value="4:30pm">4:30pm</option>
-            <option value="5:00pm">5:00pm</option>
-            <option value="5:30pm">5:30pm</option>
-            <option value="6:00pm">6:00pm</option>
-            <option value="6:30pm">6:30pm</option>
-            <option value="7:00pm">7:00pm</option>
-            <option value="7:30pm">7:30pm</option>
-            <option value="8:00pm">8:00pm</option>
-            <option value="8:30pm">8:30pm</option>
-            <option value="9:00pm">9:00pm</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Requests</label>
-        <input type="Requests" class="form-control" id="exampleInputPassword1">
-    </div>
+<h2>Reservation Details</h2>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<ul>
+    <li>
+        <strong>Group Size:</strong> For parties of 1 to 20 people, you can easily make a reservation using our online system. If your group has more than 20 people, we kindly ask that you book an event with us instead. This allows us to tailor your experience and ensure we have everything set up just for you!
+    </li>
+    <li>
+        <strong>Date and Time:</strong> Selecting your preferred date and time for your visit is simple! We encourage you to book early, especially on weekends and during peak hours, to guarantee your table. Our popular slots tend to fill up quickly, so planning ahead will ensure you secure the perfect spot for your gathering. If you have flexibility in your schedule, consider visiting during off-peak hours for a more relaxed experience.
+    </li>
+    <li>
+        <strong>Special Requests:</strong> We understand that every guest has unique needs. If you have any special requests, dietary requirements, or specific arrangements in mind, please let us know! Our reservation form includes a dedicated special requests box where you can share your preferences. Whether you need gluten-free options, have allergies, or would like assistance in planning a surprise celebration, our attentive staff is here to help. Our goal is to ensure that your experience at Bean Scene is nothing short of perfect.
+    </li>
+</ul>
+<div class="container" style="background-color: #B19470; padding: 2rem; border-radius: 15px;">
+    <h2 style="color: #251605;">Reservation Form</h2>
+    <form>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="exampleInputPhone" class="form-label">Party Size</label>
+                <select class="form-select" aria-label="Select Party Size">
+                    <option selected>Party Size</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="exampleInputPhone" class="form-label">Date</label>
+                <input type="text" class="form-control datepicker" placeholder="Select Date" aria-label="Date" />
+            </div>
+            <div class="col-md-4">
+                <label for="exampleInputPhone" class="form-label">Sitting Time</label>
+                <select class="form-select" aria-label="Select Sitting Time">
+                    <option selected>Sitting Time</option>
+                    <option value="7:00am">7:00am</option>
+                    <option value="7:30am">7:30am</option>
+                    <option value="8:00am">8:00am</option>
+                    <option value="8:30am">8:30am</option>
+                    <option value="9:00am">9:00am</option>
+                    <option value="9:30am">9:30am</option>
+                    <option value="10:00am">10:00am</option>
+                    <option value="10:30am">10:30am</option>
+                    <option value="11:00am">11:00am</option>
+                    <option value="11:30am">11:30am</option>
+                    <option value="12:00pm">12:00pm</option>
+                    <option value="12:30pm">12:30pm</option>
+                    <option value="1:00pm">1:00pm</option>
+                    <option value="1:30pm">1:30pm</option>
+                    <option value="2:00pm">2:00pm</option>
+                    <option value="2:30pm">2:30pm</option>
+                    <option value="3:00pm">3:00pm</option>
+                    <option value="3:30pm">3:30pm</option>
+                    <option value="4:00pm">4:00pm</option>
+                    <option value="4:30pm">4:30pm</option>
+                    <option value="5:00pm">5:00pm</option>
+                    <option value="5:30pm">5:30pm</option>
+                    <option value="6:00pm">6:00pm</option>
+                    <option value="6:30pm">6:30pm</option>
+                    <option value="7:00pm">7:00pm</option>
+                    <option value="7:30pm">7:30pm</option>
+                    <option value="8:00pm">8:00pm</option>
+                    <option value="8:30pm">8:30pm</option>
+                    <option value="9:00pm">9:00pm</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col mb-3">
+                <label for="exampleInputPhone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="exampleInputPhone">
+            </div>
+            <div class="col mb-3">
+                <label for="exampleInputEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="exampleInputEmail">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputRequests" class="form-label">Requests</label>
+            <input type="text" class="form-control" id="exampleInputRequests">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
