@@ -56,5 +56,4 @@ namespace ReservationSystem.Controllers
             return View();
         }
     }
-
 }
