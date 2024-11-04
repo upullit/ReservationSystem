@@ -70,7 +70,7 @@ footer {
 h1, h2, h4 {
     color: var(--primary-color);
     font-weight: bold;
-    font-family: 'Koulen Regular', cursive !important;
+    font-family: 'Koulen Regular', cursive;
 }
 
 h5 {

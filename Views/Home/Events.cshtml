@@ -1,10 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Celebrate with Us at Bean Scene!";
 }
+<div style="margin: 0; padding: 0;">
+    <div class="position-relative">
+        <img src="~/Images/Event_Banner.jpg" alt="Events" class="w-100" style="height: 400px; object-fit: cover; filter: brightness(60%);">
+        <div class="position-absolute top-50 start-50 translate-middle text-center text-white" style=" padding: 2rem; width: 100%; max-width: 600px;">
+            <h1 class="display-4" style="font-family: 'Bungee Shade', cursive !important; color: #F8FAE5;">Events</h1>
+        </div>
+    </div>
+</div>
+
 <div class="container my-5">
-
     <h1 class="text-center">@ViewData["Title"]</h1>
-
     <div class="row mt-4">
         <div class="col-md-8 offset-md-2">
             <p class="lead text-center">
@@ -12,29 +19,31 @@
             </p>
         </div>
     </div>
-    <div class="flex-container rounded-5 p-2 border" style="background-color: #43766C;">
-        <h2 class="text-center" style="color: #F8FAE5">We’re Here to Make It Yours</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <p class="lead text-center" style="color: #F8FAE5">
-                    No matter the occasion, we’re here to help make your event just the way you want it. From customising the menu to helping with setup, we’ll work with you every step of the way to create a memorable experience for you and your guests.
+    <div class="flex-container rounded-5 p-4 border" style="background-color: #43766C; border-radius: 1.7rem;">
+        <h2 class="text-center" style="color: #F8FAE5;">We’re Here to Make It Yours</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6 d-flex justify-content-center">
+                <p class="lead text-center" style="color: #F8FAE5; max-width: 90%;">
+                    No matter the occasion, we’re here to help make your event just the way you want it. From customizing the menu to helping with setup, we’ll work with you every step of the way to create a memorable experience for you and your guests.
                 </p>
             </div>
-            <div class="col-md-6">
-                <img src="~/Images/Event.jpg" alt="Event setup" class="img-fluid rounded">
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="~/Images/Event.jpg" alt="Event setup" class="img-fluid rounded" style="max-height: 450px; max-width: 450px; border-radius: 1rem;">
             </div>
         </div>
     </div>
-
-    <h2 class="text-center">The Bean Scene Touch</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <img src="~/Images/Chef_Serve.jpg" alt="Delicious food" class="img-fluid rounded">
-        </div>
-        <div class="col-md-6">
-            <p class="lead text-center">
-                From specialty coffees and teas to our favorite brunch and dinner dishes, we’ve got a little something for everyone. Got dietary preferences? Let us know! We’re happy to make adjustments so everyone can enjoy their meal.
-            </p>
+    <div class="p-4"></div>
+    <div class="flex-container rounded-5 p-4 border" style="background-color: #B19470; border-radius: 1.5rem;">
+        <h2 class="text-center" style="color: #251605;">The Bean Scene Touch</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="~/Images/Chef_Serve.jpg" alt="Chef Serving" class="img-fluid rounded" style="max-height: 450px; max-width: 450px; border-radius: 1rem;">
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <p class="lead text-center" style="color: #251605; max-width: 90%;">
+                    From specialty coffees and teas to our favorite brunch and dinner dishes, we’ve got a little something for everyone. Got dietary preferences? Let us know! We’re happy to make adjustments so everyone can enjoy their meal.
+                </p>
+            </div>
         </div>
     </div>
 
