@@ -130,3 +130,45 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+@* <div class="container" style="background-color: #B19470; padding: 2rem; border-radius: 15px;">
+    <h2 style="color: #251605;">Reservation Form</h2>
+    @using (Html.BeginForm("Create", "Reservations", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        // Helps prevent CSRF attacks
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.GuestId, "Party Size") // Assuming GuestId links to the guest or party size
+                @Html.DropDownListFor(m => m.GuestId, new SelectList(Enumerable.Range(1, 20)), "Select Party Size", new { @class = "form-select" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.CreatedAt, "Date")
+                @Html.TextBoxFor(m => m.CreatedAt, new { @class = "form-control datepicker", placeholder = "Select Date" })
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(m => m.SittingId, "Sitting Time") // Assuming SittingId corresponds to sitting time options
+                @Html.DropDownListFor(m => m.SittingId, new SelectList(/* populate this with your sitting times */), "Select Sitting Time", new { @class = "form-select" })
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col mb-3">
+                @Html.LabelFor(m => m.ContactNumber, "Phone") // Assuming you have a property for contact number
+                @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control", id = "exampleInputPhone" })
+            </div>
+            <div class="col mb-3">
+                @Html.LabelFor(m => m.Email, "Email")
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "exampleInputEmail" })
+            </div>
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.SpecialRequests, "Requests") // Assuming this property exists
+            @Html.TextBoxFor(m => m.SpecialRequests, new { @class = "form-control", id = "exampleInputRequests" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    }
+</div> *@

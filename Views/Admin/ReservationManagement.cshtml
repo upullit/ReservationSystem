@@ -3,33 +3,34 @@
     ViewBag.Title = "View Reservations";
 }
 
-<div class="container mt-4">
-    <h2 class="mb-4">Reservations</h2>
-    <h3>Placeholders!</h3>
-    <table class="table table-striped">
-        <thead>
+<h2>Reservations</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Guest Name</th>
+            <th>Contact</th>
+            <th>Sitting</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
             <tr>
-                <th>Guest Name</th>
-                <th>Contact</th>
-                <th>Sitting</th>
-                <th>Time</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>john@example.com</td>
-                <td>Dinner</td>
-                <td>6:00 PM</td>
-                <td>Pending</td>
+                <td>@reservation.Guests.Name</td>
+                <td>@reservation.Guests.Contact</td>
+                <td>@reservation.Sittings.SittingType</td>
+                <td>@reservation.CreatedAt.ToString("h:mm tt")</td>
+                <td>@reservation.ReservationStatus</td>
                 <td>
-                    @Html.ActionLink("Confirm", "ConfirmReservation", new { id = 1 }, new { @class = "btn btn-success btn-sm" }) |
-                    @Html.ActionLink("Edit", "EditReservation", new { id = 1 }, new { @class = "btn btn-primary btn-sm" }) |
-                    <a href="#" class="btn btn-danger btn-sm">Cancel</a>
+                    @Html.ActionLink("Confirm", "ConfirmReservation", new { id = reservation.Id }, new { @class = "btn btn-success btn-sm" }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = reservation.Id }, new { @class = "btn btn-primary btn-sm" }) |
+                    @Html.ActionLink("Cancel", "Cancel", new { id = reservation.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
-        </tbody>
-    </table>
-</div>
+        }
+    </tbody>
+</table>
