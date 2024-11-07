@@ -41,12 +41,14 @@ body {
 
 .navbar {
     background-color: var(--secondary-accent-color) !important;
+    font-size: 1.3rem;
 }
 
 .navbar-light .navbar-brand {
     color: var(--background-color) !important;
     font-weight: bold;
     font-family: 'Bungee Shade', cursive;
+    font-size: 1.4rem;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -65,10 +67,15 @@ footer {
     padding: 1rem;
 }
 
-h1, h2 {
+h1, h2, h4 {
     color: var(--primary-color);
     font-weight: bold;
     font-family: 'Koulen Regular', cursive;
+}
+
+h5 {
+    font-weight: bold;
+    font-family: 'Koulen Regular', cursive !important;
 }
 
 p {
@@ -89,5 +96,9 @@ button, .btn {
 .text-center {
     padding: 20px;
     border-radius: 8px;
+}
+
+.carousel-caption-custom {
+    text-align: center;
 }
 

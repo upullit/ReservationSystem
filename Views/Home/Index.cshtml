@@ -2,85 +2,111 @@
     ViewData["Title"] = "Home Page";
 }
 
-<img src="~/Images/Home_Banner.jpg" alt="Banner Image" class="img-fluid rounded shadow-lg w-100" style="max-height: 500px; object-fit: cover;" />
+<img src="~/Images/Home_Banner.jpg" alt="Banner Image" class="img-fluid rounded shadow-lg w-100" style="max-height: 300px; object-fit: cover;" />
+
 <div class="py-3">
     <div class="text-center">
         <h1 class="display-4 mt-4 mb-2">Welcome to</h1>
-        <h1 class="display-4 mb-4" style="font-family: 'Bungee Shade', cursive; color: #251605;" ">Bean Scene</h1>
+        <h1 class="display-4 mb-4" style="font-family: 'Bungee Shade', cursive !important; color: #251605;">Bean Scene</h1>
+    </div>
+    <div id="carouselExplore" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-block w-100">
+                    <img src="~/Images/Reservation.jpg" class="d-block w-100" alt="Reservation Booking" style="height: 400px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="carousel-caption d-flex justify-content-center align-items-center" style="color: #F8FAE5; height: 100%; top: 50%; transform: translateY(-50%);">
+                        <div class="text-center">
+                            <h5 class="display-6">Reservation Booking</h5>
+                            <p class="lead" style="color: #F8FAE5;">Secure your table for a delightful dining experience at Bean Scene.</p>
+                            <a href="/Booking" class="btn btn-primary">Book a Table</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100">
+                    <img src="~/Images/Event2.jpg" class="d-block w-100" alt="Event Inquiries" style="height: 400px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="carousel-caption d-flex justify-content-center align-items-center" style="color: #F8FAE5; height: 100%; top: 50%; transform: translateY(-50%);">
+                        <div class="text-center">
+                            <h5 class="display-6">Event Inquiries</h5>
+                            <p class="lead" style="color: #F8FAE5;">Interested in hosting an event? Get in touch to learn more about our offerings.</p>
+                            <a href="/events" class="btn btn-primary">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100">
+                    <img src="~/Images/Menu.jpg" class="d-block w-100" alt="View Our Menu" style="height: 400px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="carousel-caption d-flex justify-content-center align-items-center" style="color: #F8FAE5; height: 100%; top: 50%; transform: translateY(-50%);">
+                        <div class="text-center">
+                            <h5 class="display-6">View Our Menu</h5>
+                            <p class="lead" style="color: #F8FAE5;">Explore our diverse menu options and discover your new favorites!</p>
+                            <a href="/menu" class="btn btn-primary">View Menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100">
+                    <img src="~/Images/MobileOrder.jpg" class="d-block w-100" alt="Online Ordering" style="height: 400px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="carousel-caption d-flex justify-content-center align-items-center" style="color: #F8FAE5; height: 100%; top: 50%; transform: translateY(-50%);">
+                        <div class="text-center">
+                            <h5 class="display-6">Online Ordering</h5>
+                            <p class="lead" style="color: #F8FAE5;">Order your favorite dishes online for a quick and easy pick-up.</p>
+                            <a href="/order-online" class="btn btn-primary">Order Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExplore" data-bs-slide="prev" style="background: none; border: none;">
+            <span class="carousel-control-prev-icon" style="background-color: transparent; color: #F8FAE5;"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExplore" data-bs-slide="next" style="background: none; border: none;">
+            <span class="carousel-control-next-icon" style="background-color: transparent; color: #F8FAE5;"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
     <div class="container text-center">
         <h2 class="display-6 mb-3" style="color: #43766C;">About Us</h2>
-        <p class="lead mb-3">Welcome to Bean Scene, a vibrant and welcoming family-friendly restaurant located in the heart of Sydney, Australia. Established in 2018 by two passionate brothers, James and Max Smith, Bean Scene was born out of a love for great food and a desire to create a warm community space where families and friends can gather to enjoy delicious meals together.</p>
+        <p class="lead mb-3" style="line-height: 1.6;">Welcome to Bean Scene, a vibrant and welcoming family-friendly restaurant located in the heart of Sydney, Australia. Established in 2018 by two passionate brothers, James and Max Smith, Bean Scene was born out of a love for great food and a desire to create a warm community space where families and friends can gather to enjoy delicious meals together.</p>
+    </div>
+    <div class="py-3">
+        <div class="container text-center">
+            <p class="lead mb-3">At Bean Scene, we take pride in our commitment to quality and affordability. Our menu features a diverse selection of dishes crafted from fresh, locally-sourced ingredients, ensuring that every meal is not only tasty but also supports our community. From hearty breakfasts to delightful dinners, each dish is prepared with care by our dedicated kitchen staff, who are passionate about creating memorable dining experiences.</p>
+        </div>
+    </div>
+
+    <div class="py-3">
+        <div class="container text-center">
+            <p class="lead mb-3">Our restaurant is open all day, making it the perfect spot for any occasion, whether you’re looking for a casual breakfast, a family lunch, or a celebratory dinner. We understand the importance of special moments, which is why we offer bookings for events and parties. Our team is here to help you plan and execute your celebrations, providing tailored menus and attentive service to ensure your event is a success.</p>
+        </div>
+    </div>
+
+    <div class="py-3">
+        <div class="container text-center">
+            <p class="lead mb-3">At Bean Scene, we believe in building lasting relationships with our customers and suppliers. Our commitment to our community extends beyond the plate; we actively engage in local initiatives and support sustainable practices. Our menus reflect our dedication to quality by sourcing meat and vegetables from trusted local suppliers, ensuring that you receive the freshest and best ingredients in every bite.</p>
+        </div>
     </div>
 </div>
 
-<div>
-    <div class="container">
-        <p class="lead mb-3">At Bean Scene, we take pride in our commitment to quality and affordability. Our menu features a diverse selection of dishes crafted from fresh, locally-sourced ingredients, ensuring that every meal is not only tasty but also supports our community. From hearty breakfasts to delightful dinners, each dish is prepared with care by our dedicated kitchen staff, who are passionate about creating memorable dining experiences.</p>
-    </div>
-</div>
-
-<div>
-    <div class="container">
-        <p class="lead mb-3">Our restaurant is open all day, making it the perfect spot for any occasion, whether you’re looking for a casual breakfast, a family lunch, or a celebratory dinner. We understand the importance of special moments, which is why we offer bookings for events and parties. Our team is here to help you plan and execute your celebrations, providing tailored menus and attentive service to ensure your event is a success.</p>
-    </div>
-</div>
 
 <div class="py-3">
     <div class="container">
-        <p class="lead mb-3">At Bean Scene, we believe in building lasting relationships with our customers and suppliers. Our commitment to our community extends beyond the plate; we actively engage in local initiatives and support sustainable practices. Our menus reflect our dedication to quality by sourcing meat and vegetables from trusted local suppliers, ensuring that you receive the freshest and best ingredients in every bite.</p>
+        <p class="lead mb-3" style="line-height: 1.6;">Join us at Bean Scene for an exceptional dining experience where great food, friendly service, and a sense of community come together. We invite you to be a part of our journey as we continue to grow and serve the wonderful people of Sydney.</p>
     </div>
 </div>
 
-<div class="py-3">
-    <div class="container">
-        <p class="lead mb-3">Join us at Bean Scene for an exceptional dining experience where great food, friendly service, and a sense of community come together. We invite you to be a part of our journey as we continue to grow and serve the wonderful people of Sydney.</p>
-    </div>
-</div>
-
-<h2 class="text-center my-5">What Our Customers Say</h2>
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+<h2 class="text-center my-3">What Our Customers Say</h2>
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
     <div class="carousel-inner">
         <div class="carousel-item active">
             <div class="d-block w-100 p-4 text-center border rounded shadow-sm">
                 <h5 class="font-weight-bold">Great Food!</h5>
                 <p>"The food at Bean Scene is amazing! I love the variety of dishes and the flavors are always on point."</p>
                 <small>- Jane D.</small>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="d-block w-100 p-4 text-center border rounded shadow-sm">
-                <h5 class="font-weight-bold">Family-Friendly Atmosphere</h5>
-                <p>"Such a welcoming place for families! My kids always have a great time here."</p>
-                <small>- Mark S.</small>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="d-block w-100 p-4 text-center border rounded shadow-sm">
-                <h5 class="font-weight-bold">Excellent Service!</h5>
-                <p>"The staff are friendly and attentive. I always feel taken care of during my visits."</p>
-                <small>- Lisa W.</small>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="d-block w-100 p-4 text-center border rounded shadow-sm">
-                <h5 class="font-weight-bold">Cozy Ambiance</h5>
-                <p>"The atmosphere is so cozy and inviting. Perfect for a relaxing meal or catching up with friends."</p>
-                <small>- Tom R.</small>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="d-block w-100 p-4 text-center border rounded shadow-sm">
-                <h5 class="font-weight-bold">Best Coffee in Town</h5>
-                <p>"Their coffee is the best I've ever had! I come here just for the brew."</p>
-                <small>- Sarah K.</small>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="d-block w-100 p-4 text-center border rounded shadow-sm">
-                <h5 class="font-weight-bold">Perfect for Events</h5>
-                <p>"We hosted a small event here, and everything was perfect! The staff went above and beyond."</p>
-                <small>- Michael J.</small>
             </div>
         </div>
     </div>
@@ -92,4 +118,43 @@
         <span class="carousel-control-next-icon" aria-hidden="true" style="transform: scale(0.75);"></span>
         <span class="visually-hidden">Next</span>
     </button>
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title display-6" style="color: #43766C;">Our Address</h5>
+                        <p class="card-text" style="font-size: 1.2rem;">
+                            123 Roast St,<br>
+                            Java Bay,<br>
+                            Sydney 2000
+                        </p>
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title display-6" style="color: #43766C;">Trading Hours</h5>
+                        <p class="card-text" style="font-size: 1.2rem;">
+                            Monday - Friday: 8:00 AM - 8:00 PM<br>
+                            Saturday: 9:00 AM - 10:00 PM<br>
+                            Sunday: Closed
+                        </p>
+                    </div>
+                </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title display-6" style="color: #43766C;">Contact Details</h5>
+                        <p class="card-text" style="font-size: 1.2rem;">
+                            Email: <a href="mailto:info@beanscene.com">info@beanscene.com</a><br>
+                            Phone: (123) 456-7890<br>
+                            Follow us on social media!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="~/Images/TopView.jpg" alt="Address Image" class="img-fluid rounded w-70">
+            </div>
+        </div>
+    </div>
 </div>
