@@ -24,7 +24,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios.
     app.UseHsts();
 }
-app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -37,6 +36,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}"); // Fallback route (for the User area when no area is specified)
+    pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
