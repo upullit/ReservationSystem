@@ -2,8 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using ReservationSystem.Models;
 using System.Diagnostics;
 
-namespace ReservationSystem.Controllers
+namespace ReservationSystem.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
