@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bean Scene</title>
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+    <link rel="icon" href="~/favicon.ico?v=1" type="image/x-icon" />
 
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -19,13 +21,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ReservationManagement">Reservation Management</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="ReservationManagement">Reservation Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="SittingManagement">Sitting Management</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="SittingManagement">Sitting Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Sittings">Sitting Creation</a>
                         </li>
                     </ul>
                 </div>

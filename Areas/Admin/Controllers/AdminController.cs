@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ReservationSystem.Controllers
+namespace ReservationSystem.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class AdminController : Controller
@@ -22,6 +22,10 @@ namespace ReservationSystem.Controllers
             return View();
         }
         public IActionResult ReservationManagement()
+        {
+            return View();
+        }
+        public IActionResult Sittings()
         {
             return View();
         }
