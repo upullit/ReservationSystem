@@ -29,6 +29,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
+
 // Enable areas routing
 app.MapControllerRoute(
     name: "areaRoute",

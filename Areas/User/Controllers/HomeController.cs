@@ -24,11 +24,6 @@ namespace ReservationSystem.Areas.User.Controllers
             return View();
         }
 
-        public IActionResult Sittings()
-        {
-            return View();
-        }
-
         public IActionResult Menu()
         {
             return View();
