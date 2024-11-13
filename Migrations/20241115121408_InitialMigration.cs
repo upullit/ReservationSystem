@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ReservationSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class ReservationSystemSetup : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,8 @@ namespace ReservationSystem.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,23 +27,7 @@ namespace ReservationSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sittings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    EndTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    MaxCapacity = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sittings", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tables",
+                name: "RestaurantTables",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -53,7 +38,42 @@ namespace ReservationSystem.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tables", x => x.Id);
+                    table.PrimaryKey("PK_RestaurantTables", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SittingTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SittingTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sittings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SittingTypeId = table.Column<int>(type: "int", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MaxCapacity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sittings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sittings_SittingTypes_SittingTypeId",
+                        column: x => x.SittingTypeId,
+                        principalTable: "SittingTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,9 +84,9 @@ namespace ReservationSystem.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GuestId = table.Column<int>(type: "int", nullable: false),
                     SittingId = table.Column<int>(type: "int", nullable: false),
-                    TableId = table.Column<int>(type: "int", nullable: false),
+                    RestaurantTableId = table.Column<int>(type: "int", nullable: false),
                     ReservationStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SpecialRequests = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpecialRequests = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -80,15 +100,15 @@ namespace ReservationSystem.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reservations_Sittings_SittingId",
-                        column: x => x.SittingId,
-                        principalTable: "Sittings",
+                        name: "FK_Reservations_RestaurantTables_RestaurantTableId",
+                        column: x => x.RestaurantTableId,
+                        principalTable: "RestaurantTables",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reservations_Tables_TableId",
-                        column: x => x.TableId,
-                        principalTable: "Tables",
+                        name: "FK_Reservations_Sittings_SittingId",
+                        column: x => x.SittingId,
+                        principalTable: "Sittings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -99,14 +119,19 @@ namespace ReservationSystem.Migrations
                 column: "GuestId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Reservations_RestaurantTableId",
+                table: "Reservations",
+                column: "RestaurantTableId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reservations_SittingId",
                 table: "Reservations",
                 column: "SittingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_TableId",
-                table: "Reservations",
-                column: "TableId");
+                name: "IX_Sittings_SittingTypeId",
+                table: "Sittings",
+                column: "SittingTypeId");
         }
 
         /// <inheritdoc />
@@ -119,10 +144,13 @@ namespace ReservationSystem.Migrations
                 name: "Guests");
 
             migrationBuilder.DropTable(
+                name: "RestaurantTables");
+
+            migrationBuilder.DropTable(
                 name: "Sittings");
 
             migrationBuilder.DropTable(
-                name: "Tables");
+                name: "SittingTypes");
         }
     }
 }

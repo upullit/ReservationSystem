@@ -1,0 +1,24 @@
+﻿@model ReservationSystem.Models.Sitting
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Delete Sitting";
+}
+
+<h2>Delete Sitting</h2>
+
+<div class="alert alert-danger">
+    <p>Are you sure you want to delete this Sitting?</p>
+    <ul>
+        <li>Type: @(Model.SittingType?.Name ?? "No Type Assigned")</li>
+        <li>Start Time: @Model.StartTime.ToString("g")</li>
+        <li>End Time: @Model.EndTime.ToString("g")</li>
+        <li>Max Capacity: @Model.MaxCapacity</li>
+    </ul>
+</div>
+
+<form asp-area="Admin" asp-controller="Sitting" asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-area="Admin" asp-controller="Sitting" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ReservationSystem.Models.SittingType>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "View Sitting Types";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">View All Sitting Types</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sittingType in Model)
+            {
+                <tr>
+                    <td>@sittingType.Id</td>
+                    <td>@sittingType.Name</td>
+                    <td>
+                        <a asp-area="Admin" asp-controller="SittingType" asp-action="Edit" asp-route-id="@sittingType.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-area="Admin" asp-controller="SittingType" asp-action="Delete" asp-route-id="@sittingType.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

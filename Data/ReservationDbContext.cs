@@ -14,15 +14,10 @@ public class ReservationDbContext : DbContext
     public DbSet<Guest> Guests { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
     public DbSet<Sitting> Sittings { get; set; }
-    public DbSet<RestaurantTable> RestaurantTables { get; set; }
+    public DbSet<SittingType> SittingTypes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configure the relationship between Reservation and Table
-        modelBuilder.Entity<Reservation>()
-            .HasOne(r => r.RestaurantTable)
-            .WithMany(t => t.Reservations)
-            .HasForeignKey(r => r.RestaurantTableId);
 
         // Configure the relationship between Reservation and Guest
         modelBuilder.Entity<Reservation>()
@@ -35,5 +30,20 @@ public class ReservationDbContext : DbContext
             .HasOne(r => r.Sitting)
             .WithMany(s => s.Reservations)
             .HasForeignKey(r => r.SittingId);
+
+        modelBuilder.Entity<Sitting>()
+            .HasOne(s => s.SittingType)
+            .WithMany()
+            .HasForeignKey(s => s.SittingTypeId);
+
+        modelBuilder.Entity<SittingType>()
+            .Property(st => st.Name)
+            .IsRequired();
+
+        // Seed data for SittingType
+        //modelBuilder.Entity<SittingType>().HasData(
+        //    new SittingType { Id = 1, Name = "Breakfast" },
+        //    new SittingType { Id = 2, Name = "Lunch" },
+        //    new SittingType { Id = 3, Name = "Dinner" });
     }
 }

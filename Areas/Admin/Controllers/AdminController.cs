@@ -17,18 +17,7 @@ namespace ReservationSystem.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult SittingManagement()
-        {
-            return View();
-        }
-        public IActionResult ReservationManagement()
-        {
-            return View();
-        }
-        public IActionResult Sittings()
-        {
-            return View();
-        }
+
 
     }
 

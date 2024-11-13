@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ReservationSystem.Models.Sitting>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "View Sittings";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">View All Sittings</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Max Capacity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sitting in Model)
+            {
+                <tr>
+                    <td>@sitting.SittingType.Name</td> <!-- Display Sitting Type Name -->
+                    <td>@sitting.StartTime.ToString("g")</td> <!-- Display date and time -->
+                    <td>@sitting.EndTime.ToString("g")</td> <!-- Display date and time -->
+                    <td>@sitting.MaxCapacity</td>
+                    <td>
+                        <a asp-area="Admin" asp-controller="Sitting" asp-action="Edit" asp-route-id="@sitting.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-area="Admin" asp-controller="Sitting" asp-action="Delete" asp-route-id="@sitting.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

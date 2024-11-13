@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReservationSystem.Data;
 
@@ -11,9 +12,11 @@ using ReservationSystem.Data;
 namespace ReservationSystem.Migrations
 {
     [DbContext(typeof(ReservationDbContext))]
-    partial class ReservationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241115125509_InitialMig")]
+    partial class InitialMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,30 +58,23 @@ namespace ReservationSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("BookingTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GuestId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PartySize")
-                        .HasColumnType("int");
-
                     b.Property<string>("ReservationStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RestaurantTableId")
+                        .HasColumnType("int");
 
                     b.Property<int>("SittingId")
                         .HasColumnType("int");
 
                     b.Property<string>("SpecialRequests")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TableNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -88,9 +84,35 @@ namespace ReservationSystem.Migrations
 
                     b.HasIndex("GuestId");
 
+                    b.HasIndex("RestaurantTableId");
+
                     b.HasIndex("SittingId");
 
                     b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("ReservationSystem.Models.RestaurantTable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Area")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RestaurantTables");
                 });
 
             modelBuilder.Entity("ReservationSystem.Models.Sitting", b =>
@@ -109,9 +131,6 @@ namespace ReservationSystem.Migrations
 
                     b.Property<int>("SittingTypeId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("SittingisAvaliable")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
@@ -148,6 +167,12 @@ namespace ReservationSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ReservationSystem.Models.RestaurantTable", "RestaurantTable")
+                        .WithMany("Reservations")
+                        .HasForeignKey("RestaurantTableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ReservationSystem.Models.Sitting", "Sitting")
                         .WithMany("Reservations")
                         .HasForeignKey("SittingId")
@@ -155,6 +180,8 @@ namespace ReservationSystem.Migrations
                         .IsRequired();
 
                     b.Navigation("Guest");
+
+                    b.Navigation("RestaurantTable");
 
                     b.Navigation("Sitting");
                 });
@@ -171,6 +198,11 @@ namespace ReservationSystem.Migrations
                 });
 
             modelBuilder.Entity("ReservationSystem.Models.Guest", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
+            modelBuilder.Entity("ReservationSystem.Models.RestaurantTable", b =>
                 {
                     b.Navigation("Reservations");
                 });

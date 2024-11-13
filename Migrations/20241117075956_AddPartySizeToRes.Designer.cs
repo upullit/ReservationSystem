@@ -12,8 +12,8 @@ using ReservationSystem.Data;
 namespace ReservationSystem.Migrations
 {
     [DbContext(typeof(ReservationDbContext))]
-    [Migration("20241010122222_ReservationSystemSetup")]
-    partial class ReservationSystemSetup
+    [Migration("20241117075956_AddPartySizeToRes")]
+    partial class AddPartySizeToRes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,11 +33,15 @@ namespace ReservationSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Contact")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -60,19 +64,21 @@ namespace ReservationSystem.Migrations
                     b.Property<int>("GuestId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("PartySize")
+                        .HasColumnType("int");
+
                     b.Property<string>("ReservationStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RestaurantTableId")
+                        .HasColumnType("int");
 
                     b.Property<int>("SittingId")
                         .HasColumnType("int");
 
                     b.Property<string>("SpecialRequests")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TableId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -81,40 +87,14 @@ namespace ReservationSystem.Migrations
 
                     b.HasIndex("GuestId");
 
-                    b.HasIndex("SittingId");
+                    b.HasIndex("RestaurantTableId");
 
-                    b.HasIndex("TableId");
+                    b.HasIndex("SittingId");
 
                     b.ToTable("Reservations");
                 });
 
-            modelBuilder.Entity("ReservationSystem.Models.Sitting", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<TimeSpan>("EndTime")
-                        .HasColumnType("time");
-
-                    b.Property<int>("MaxCapacity")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("StartTime")
-                        .HasColumnType("time");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sittings");
-                });
-
-            modelBuilder.Entity("ReservationSystem.Models.Table", b =>
+            modelBuilder.Entity("ReservationSystem.Models.RestaurantTable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,37 +115,114 @@ namespace ReservationSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tables");
+                    b.ToTable("RestaurantTables");
+                });
+
+            modelBuilder.Entity("ReservationSystem.Models.Sitting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MaxCapacity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SittingTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SittingTypeId");
+
+                    b.ToTable("Sittings");
+                });
+
+            modelBuilder.Entity("ReservationSystem.Models.SittingType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SittingTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Breakfast"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Lunch"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Dinner"
+                        });
                 });
 
             modelBuilder.Entity("ReservationSystem.Models.Reservation", b =>
                 {
-                    b.HasOne("ReservationSystem.Models.Guest", "Guests")
+                    b.HasOne("ReservationSystem.Models.Guest", "Guest")
                         .WithMany("Reservations")
                         .HasForeignKey("GuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReservationSystem.Models.Sitting", "Sittings")
+                    b.HasOne("ReservationSystem.Models.RestaurantTable", "RestaurantTable")
+                        .WithMany("Reservations")
+                        .HasForeignKey("RestaurantTableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ReservationSystem.Models.Sitting", "Sitting")
                         .WithMany("Reservations")
                         .HasForeignKey("SittingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ReservationSystem.Models.Table", "Tables")
+                    b.Navigation("Guest");
+
+                    b.Navigation("RestaurantTable");
+
+                    b.Navigation("Sitting");
+                });
+
+            modelBuilder.Entity("ReservationSystem.Models.Sitting", b =>
+                {
+                    b.HasOne("ReservationSystem.Models.SittingType", "SittingType")
                         .WithMany()
-                        .HasForeignKey("TableId")
+                        .HasForeignKey("SittingTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Guests");
-
-                    b.Navigation("Sittings");
-
-                    b.Navigation("Tables");
+                    b.Navigation("SittingType");
                 });
 
             modelBuilder.Entity("ReservationSystem.Models.Guest", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
+            modelBuilder.Entity("ReservationSystem.Models.RestaurantTable", b =>
                 {
                     b.Navigation("Reservations");
                 });

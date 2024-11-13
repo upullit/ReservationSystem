@@ -1,0 +1,34 @@
+﻿@model ReservationSystem.Models.Sitting
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Edit Sitting";
+}
+
+<h2>Edit Sitting</h2>
+
+<form asp-area="Admin" asp-controller="Sitting" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="SittingTypeId" class="form-label">Type</label>
+        <select asp-for="SittingTypeId" class="form-control" asp-items="ViewBag.SittingTypes"></select>
+        <span asp-validation-for="SittingTypeId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="StartTime" class="form-label">Start Time</label>
+        <input asp-for="StartTime" type="datetime-local" class="form-control" />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EndTime" class="form-label">End Time</label>
+        <input asp-for="EndTime" type="datetime-local" class="form-control" />
+        <span asp-validation-for="EndTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="MaxCapacity" class="form-label">Max Capacity</label>
+        <input asp-for="MaxCapacity" type="number" class="form-control" />
+        <span asp-validation-for="MaxCapacity" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-area="Admin" asp-controller="Sitting" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

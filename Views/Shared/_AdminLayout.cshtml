@@ -24,13 +24,19 @@
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="ReservationManagement">Reservation Management</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reservation" asp-action="Index">Reservation Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="SittingManagement">Sitting Management</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sitting" asp-action="Index">Sitting Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Sittings">Sitting Creation</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sitting" asp-action="Create">Sitting Creation</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" asp-area="Admin" asp-controller="SittingType" asp-action="Create"> Create Sitting Type</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="SittingType" asp-action="Index">Sitting Type Management</a>
                         </li>
                     </ul>
                 </div>

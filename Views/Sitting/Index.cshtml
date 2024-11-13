@@ -1,0 +1,31 @@
+﻿@model ReservationSystem.Models.Sitting
+
+@{
+    ViewData["Title"] = "Create Sitting";
+}
+
+<h2>Create a New Sitting</h2>
+
+<form asp-controller="Sitting" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="SittingTypeId" class="form-label">Type</label>
+        <select asp-for="SittingTypeId" class="form-control" asp-items="ViewBag.SittingTypes"></select>
+        <span asp-validation-for="SittingTypeId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="StartTime" class="form-label">Start Time</label>
+        <input asp-for="StartTime" type="datetime-local" class="form-control" required />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EndTime" class="form-label">End Time</label>
+        <input asp-for="EndTime" type="datetime-local" class="form-control" required />
+        <span asp-validation-for="EndTime" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="MaxCapacity" class="form-label">Max Capacity</label>
+        <input asp-for="MaxCapacity" type="number" class="form-control" required />
+        <span asp-validation-for="MaxCapacity" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Sitting</button>
+</form>

@@ -12,8 +12,8 @@ using ReservationSystem.Data;
 namespace ReservationSystem.Migrations
 {
     [DbContext(typeof(ReservationDbContext))]
-    [Migration("20241107024641_UpdateTimeSpanandFixedNullables")]
-    partial class UpdateTimeSpanandFixedNullables
+    [Migration("20241115121408_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,16 +129,34 @@ namespace ReservationSystem.Migrations
                     b.Property<int>("MaxCapacity")
                         .HasColumnType("int");
 
+                    b.Property<int>("SittingTypeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Type")
+                    b.HasKey("Id");
+
+                    b.HasIndex("SittingTypeId");
+
+                    b.ToTable("Sittings");
+                });
+
+            modelBuilder.Entity("ReservationSystem.Models.SittingType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sittings");
+                    b.ToTable("SittingTypes");
                 });
 
             modelBuilder.Entity("ReservationSystem.Models.Reservation", b =>
@@ -166,6 +184,17 @@ namespace ReservationSystem.Migrations
                     b.Navigation("RestaurantTable");
 
                     b.Navigation("Sitting");
+                });
+
+            modelBuilder.Entity("ReservationSystem.Models.Sitting", b =>
+                {
+                    b.HasOne("ReservationSystem.Models.SittingType", "SittingType")
+                        .WithMany()
+                        .HasForeignKey("SittingTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SittingType");
                 });
 
             modelBuilder.Entity("ReservationSystem.Models.Guest", b =>

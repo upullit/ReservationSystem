@@ -1,0 +1,11 @@
+﻿@model ReservationSystem.Models.Reservation
+
+<h1>Reservation Details</h1>
+
+<p><strong>Guest Name:</strong> @Model.Guest?.Name</p>
+<p><strong>Email:</strong> @Model.Guest?.Email</p>
+<p><strong>Phone:</strong> @Model.Guest?.Phone</p>
+<p><strong>Party Size:</strong> @Model.PartySize</p>
+<p><strong>Sitting:</strong> @Model.Sitting?.StartTime.ToString("dd/MM/yyyy hh:mm tt") - @Model.Sitting?.EndTime.ToString("hh:mm tt")</p>
+<p><strong>Table Number:</strong> @Model.TableNumber</p>
+<p><strong>Special Requests:</strong> @Model.SpecialRequests</p>

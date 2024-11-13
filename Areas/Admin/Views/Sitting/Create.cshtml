@@ -1,16 +1,17 @@
 ﻿@model ReservationSystem.Models.Sitting
 
 @{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Create Sitting";
 }
 
 <h2>Create a New Sitting</h2>
 
-<form asp-controller="Sitting" asp-action="Create" method="post">
+<form asp-area="Admin" asp-controller="Sitting" asp-action="Create" method="post">
     <div class="mb-3">
-        <label asp-for="Type" class="form-label">Type (e.g., Breakfast, Lunch, Dinner)</label>
-        <input asp-for="Type" class="form-control" required />
-        <span asp-validation-for="Type" class="text-danger"></span>
+        <label asp-for="SittingTypeId" class="form-label">Type</label>
+        <select asp-for="SittingTypeId" class="form-control" asp-items="ViewBag.SittingTypes" ></select>
+        <span asp-validation-for="SittingTypeId" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="StartTime" class="form-label">Start Time</label>
