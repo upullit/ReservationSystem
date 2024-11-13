@@ -44,11 +44,11 @@
 </div>
 <div class="container" style="background-color: #B19470; padding: 2rem; border-radius: 15px;">
     <h2 style="color: #251605;">Reservation Form</h2>
-    <form>
+    <form asp-controller="Reservation" asp-action="AddBooking" method="post">
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="exampleInputPhone" class="form-label">Party Size</label>
-                <select class="form-select" id="PartySize" name="PartySize" required>
+                <label for="PartySize" class="form-label">Party Size</label>
+                <select class="form-select" id="PartySize" name="partiSize" required>
                     <option selected disabled>Select Party Size</option>
                     @for (int i = 1; i <= 20; i++)
                     {
@@ -58,11 +58,11 @@
             </div>
             <div class="col-md-4">
                 <label for="Date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="Date" name="Date" required />
+                <input type="date" class="form-control" id="Date" name="date" required />
             </div>
             <div class="col-md-4">
                 <label for="SittingTime" class="form-label">Sitting Time</label>
-                <select class="form-select" id="SittingTime" name="SittingTime" required>
+                <select class="form-select" id="SittingTime" name="sittingTime" required>
                     <option selected disabled>Select Sitting Time</option>
 
                     <!-- Breakfast Times -->
@@ -107,21 +107,21 @@
         <div class="row mb-3">
             <div class="col md-4">
                 <label for="exampleInputName" class="form-label">Name</label>
-                <input type="text" class="form-control" id="exampleInputName">
+                <input type="text" class="form-control" id="exampleInputName" name="guestName" required>
             </div>
             <div class="col md-4">
                 <label for="exampleInputPhone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="exampleInputPhone">
+                <input type="text" class="form-control" id="exampleInputPhone" name="phone" required>
             </div>
             <div class="col md-4">
                 <label for="exampleInputEmail" class="form-label">Email</label>
-                <input type="text" class="form-control" id="exampleInputEmail">
+                <input type="text" class="form-control" id="exampleInputEmail" name="email" required>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-4 mb-3">
                 <label for="RestaurantArea" class="form-label">Restaurant Area</label>
-                <select class="form-select" id="RestaurantArea" name="RestaurantArea" required>
+                <select class="form-select" id="RestaurantArea" name="RestaurantArea" name="restaurantArea" required>
                     <option selected>Select Area</option>
                     <option value="Outdoor">Outdoor</option>
                     <option value="Indoor Bar">Indoor Bar</option>
@@ -130,7 +130,7 @@
             </div>
             <div class="col-md-8 mb-3">
                 <label for="exampleInputRequests" class="form-label">Requests</label>
-                <input type="text" class="form-control" id="exampleInputRequests" name="SpecialRequests">
+                <input type="text" class="form-control" id="exampleInputRequests" name="specialRequests">
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

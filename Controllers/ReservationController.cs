@@ -51,20 +51,13 @@ namespace ReservationSystem.Controllers
                     await _context.SaveChangesAsync();
                 }
 
-                // Find or create a sitting that matches the date and time
-                var sitting = await _context.Sittings.FirstOrDefaultAsync(s => s.StartTime <= TimeSpan.Parse(sittingTime) && s.EndTime >=
-                TimeSpan.Parse(sittingTime) && s.Type == "Dinner"); // Customize as needed
-
-                if (sitting == null)
-                {
-                    return BadRequest("No available sittings for the selected time.");
-                }
+                // check sitting
 
                 // Create the reservation
                 var reservation = new Reservation
                 {
                     GuestId = guest.Id,
-                    SittingId = sitting.Id,
+                    //SittingId = sitting.Id,
                     RestaurantTableId = 1, // needs logic to select a table if iteration of avaliable
                     ReservationStatus = "Pending",
                     SpecialRequests = specialRequests,
@@ -75,9 +68,11 @@ namespace ReservationSystem.Controllers
                 _context.Reservations.Add(reservation);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Thanks");
+                return View("~/Views/Home/Booking.cshtml");
+                //return RedirectToAction("ThanksBooking");
             }
-            return View("Booking");
+            return View("~/Views/Home/Booking.cshtml");
+            //return View("Booking");
         }
 
         // GET: /Home/ViewBookings

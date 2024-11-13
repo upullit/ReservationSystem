@@ -6,22 +6,26 @@
 
 <h2>Create a New Sitting</h2>
 
-<form asp-action="Create" method="post">
+<form asp-controller="Sitting" asp-action="Create" method="post">
     <div class="mb-3">
         <label asp-for="Type" class="form-label">Type (e.g., Breakfast, Lunch, Dinner)</label>
         <input asp-for="Type" class="form-control" required />
+        <span asp-validation-for="Type" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="StartTime" class="form-label">Start Time</label>
-        <input asp-for="StartTime" type="time" class="form-control" required />
+        <input asp-for="StartTime" type="datetime-local" class="form-control" required />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="EndTime" class="form-label">End Time</label>
-        <input asp-for="EndTime" type="time" class="form-control" required />
+        <input asp-for="EndTime" type="datetime-local" class="form-control" required />
+        <span asp-validation-for="EndTime" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="MaxCapacity" class="form-label">Max Capacity</label>
         <input asp-for="MaxCapacity" type="number" class="form-control" required />
+        <span asp-validation-for="MaxCapacity" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Create Sitting</button>
 </form>

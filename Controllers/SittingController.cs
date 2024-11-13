@@ -15,6 +15,11 @@ namespace ReservationSystem.Controllers
             _context = context;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         // Get Sitting / create
         public IActionResult Create()
         {
@@ -35,12 +40,12 @@ namespace ReservationSystem.Controllers
         }
 
         // get sitting index
-        // GET: Sitting/Index
-        public async Task<IActionResult> Index()
-        {
-            var sittings = await _context.Sittings.ToListAsync();
-            return View(sittings);
-        }
+        //// GET: Sitting/Index
+        //public async Task<IActionResult> Index()
+        //{
+        //    var sittings = await _context.Sittings.ToListAsync();
+        //    return View(sittings);
+        //}
 
         // Edit sitting
 
