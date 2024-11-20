@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bean Scene</title>
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/admin.css" />
     <link rel="icon" href="~/favicon.ico?v=1" type="image/x-icon" />
 
 </head>
@@ -21,7 +20,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reservation" asp-action="Index">Reservation Management</a>
@@ -33,10 +32,10 @@
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sitting" asp-action="Create">Sitting Creation</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" asp-area="Admin" asp-controller="SittingType" asp-action="Create"> Create Sitting Type</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="SittingManagement">Sitting Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="SittingType" asp-action="Index">Sitting Type Management</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Sittings">Sitting Creation</a>
                         </li>
                     </ul>
                 </div>
