@@ -4,6 +4,7 @@ using ReservationSystem.Areas.User.Services;
 using ReservationSystem.Data;
 using ReservationSystem.Data.Seed;
 using ReservationSystem.Models;
+using MyReservationSystem.Services;
 using System.Globalization; // Import the namespace for CultureInfo
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,9 @@ builder.Services.AddControllersWithViews();
 
 // Register the ReservationService
 builder.Services.AddScoped<ReservationService>();
+
+// Register MenuService with HttpClient
+builder.Services.AddHttpClient<MenuService>();
 
 // Set the default culture for the application
 var cultureInfo = new CultureInfo("en-AU");
@@ -58,5 +62,10 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Menu}/{action=Index}/{id?}");
+
 
 app.Run();

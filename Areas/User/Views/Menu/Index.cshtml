@@ -1,0 +1,49 @@
+﻿@model Dictionary<string, List<MyReservationSystem.Services.MenuItem>>
+
+@{
+    ViewData["Title"] = "View our menu";
+}
+
+<div style="margin: 0; padding: 0;">
+    <div class="position-relative">
+        <img src="~/Images/Menu_Banner.jpg" alt="Menu" class="w-100" style="height: 400px; object-fit: cover; filter: brightness(60%);">
+        <div class="position-absolute top-50 start-50 translate-middle text-center text-white" style=" padding: 2rem; width: 100%; max-width: 600px;">
+            <h1 class="display-4" style="font-family: 'Bungee Shade', cursive !important; color: #F8FAE5;">Our Menu</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="text-center mb-4" style="font-size: 38px; font-weight: bold; color: #251605;">Menu</h1>
+    <div class="row">
+        @foreach (var category in Model.Keys)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card" style="background-color: #FAF4E4;">
+                    <div class="card-body">
+                        <h2 class="card-title text-center" style="font-size: 26px; font-weight: bold; color: #251605;">@category</h2>
+                        <ul class="list-group">
+                            @foreach (var item in Model[category])
+                            {
+                                <li class="list-group-item" style="color: #251605;">
+                                    <strong>@item.Name</strong><br />
+                                    <span style="color: #76453B;">@item.Description</span><br />
+                                    <small>Ingredients: @string.Join(", ", item.Ingredients)</small><br />
+                                    <span class="float-end" style="color: #251605; font-weight: bold;">$@item.Price.ToString("F2")</span>
+                                    @if (item.IsVegan)
+                                    {
+                                        <span class="badge bg-success ms-2">Vegan</span>
+                                    }
+                                    @if (item.IsVegetarian)
+                                    {
+                                        <span class="badge bg-warning ms-2">Vegetarian</span>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
