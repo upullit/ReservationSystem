@@ -1,9 +1,6 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem.Areas.User.Services;
 using ReservationSystem.Data;
-using ReservationSystem.Data.Seed;
-using ReservationSystem.Models;
 using MyReservationSystem.Services;
 using System.Globalization; // Import the namespace for CultureInfo
 
@@ -25,6 +22,10 @@ builder.Services.AddScoped<ReservationService>();
 
 // Register MenuService with HttpClient
 builder.Services.AddHttpClient<MenuService>();
+
+// Register Automatic Reservation Status Update set Reservations to completed for past dates
+builder.Services.AddHostedService<ReservationStatusUpdater>();
+
 
 // Set the default culture for the application
 var cultureInfo = new CultureInfo("en-AU");
@@ -60,11 +61,11 @@ app.MapControllerRoute(
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"); // Default route for areas (Admin/User)
 
 app.MapControllerRoute(
-    name: "default",
+    name: "userDefault",
     pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-    name: "default",
+    name: "menuDefault",
     pattern: "{controller=Menu}/{action=Index}/{id?}");
 
 

@@ -1,0 +1,27 @@
+﻿@model ReservationSystem.Models.Reservation
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Delete Reservation";
+}
+
+<h2>Delete Sitting</h2>
+
+<div class="alert alert-danger">
+    <p>Are you sure you want to delete this Sitting?</p>
+    <ul>
+        <p><strong>Guest Name:</strong> @Model.Guest?.Name</p>
+        <p><strong>Email:</strong> @Model.Guest?.Email</p>
+        <p><strong>Phone:</strong> @Model.Guest?.Phone</p>
+        <p><strong>Party Size:</strong> @Model.PartySize</p>
+        <p><strong>Sitting:</strong> @Model.Sitting?.StartTime.ToString("dd/MM/yyyy hh:mm tt") - @Model.Sitting?.EndTime.ToString("hh:mm tt")</p>
+        <p><strong>Table Number:</strong> @Model.TableNumber</p>
+        <p><strong>Special Requests:</strong> @Model.SpecialRequests</p>
+    </ul>
+</div>
+
+<form asp-area="Admin" asp-controller="Reservation" asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-area="Admin" asp-controller="Reservation" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

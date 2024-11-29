@@ -1,0 +1,57 @@
+﻿@model ReservationSystem.Models.Reservation
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Edit Reservation";
+}
+
+<h2>Edit Reservation</h2>
+
+<form asp-area="Admin" asp-controller="Reservation" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="GuestId" class="form-label">Guest</label>
+        <select asp-for="GuestId" class="form-control" asp-items="ViewBag.Guests"></select>
+        <span asp-validation-for="GuestId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SittingId" class="form-label">Sitting</label>
+        <select asp-for="SittingId" class="form-control" asp-items="ViewBag.Sittings"></select>
+        <span asp-validation-for="SittingId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TableNumber" class="form-label">Table Number</label>
+        <input asp-for="TableNumber" type="text" class="form-control" />
+        <span asp-validation-for="TableNumber" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ReservationStatus" class="form-label">Reservation Status</label>
+        <input asp-for="ReservationStatus" type="text" class="form-control" />
+        <span asp-validation-for="ReservationStatus" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SpecialRequests" class="form-label">Special Requests</label>
+        <textarea asp-for="SpecialRequests" class="form-control"></textarea>
+        <span asp-validation-for="SpecialRequests" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PartySize" class="form-label">Party Size</label>
+        <input asp-for="PartySize" type="number" class="form-control" />
+        <span asp-validation-for="PartySize" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BookingTime" class="form-label">Booking Time</label>
+        <input asp-for="BookingTime" type="datetime-local" class="form-control" />
+        <span asp-validation-for="BookingTime" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-area="Admin" asp-controller="Reservation" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -125,4 +125,92 @@ public class ReservationService
         await _context.SaveChangesAsync();
         return true;
     }
+
+    public async Task<bool> UpdateReservation(Reservation updatedReservation)
+    {
+        var existingReservation = await _context.Reservations
+            .Include(r => r.Guest)
+            .Include(r => r.Sitting)
+            .FirstOrDefaultAsync(r => r.Id == updatedReservation.Id);
+
+        if (existingReservation == null)
+        {
+            return false;
+        }
+
+        // Update fields
+        existingReservation.GuestId = updatedReservation.GuestId;
+        existingReservation.SittingId = updatedReservation.SittingId;
+        existingReservation.TableNumber = updatedReservation.TableNumber;
+        existingReservation.ReservationStatus = updatedReservation.ReservationStatus;
+        existingReservation.SpecialRequests = updatedReservation.SpecialRequests;
+        existingReservation.PartySize = updatedReservation.PartySize;
+        existingReservation.BookingTime = updatedReservation.BookingTime;
+        existingReservation.UpdatedAt = DateTime.UtcNow;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+
+    public async Task<bool> ChangeReservationStatus(int id, string newStatus)
+    {
+        var reservation = await _context.Reservations.FindAsync(id);
+        if (reservation == null)
+        {
+            return false;
+        }
+
+        reservation.ReservationStatus = newStatus;
+        reservation.UpdatedAt = DateTime.UtcNow;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public async Task UpdateCompletedReservations()
+    {
+        await _context.Reservations
+            .Where(r => r.ReservationStatus != "Completed" && r.BookingTime.Date < DateTime.UtcNow.Date)
+            .ExecuteUpdateAsync(updates =>
+                updates
+                    .SetProperty(r => r.ReservationStatus, "Completed")
+                    .SetProperty(r => r.UpdatedAt, DateTime.UtcNow));
+    }
+
+    public async Task<Dictionary<string, List<Reservation>>> GetReservationsGroupedBySitting(string status, DateTime? date)
+    {
+        var query = _context.Reservations
+            .Include(r => r.Guest)
+            .Include(r => r.Sitting)
+                .ThenInclude(s => s.SittingType) // Include SittingType
+            .Where(r => r.ReservationStatus == status);
+
+        if (date.HasValue)
+        {
+            query = query.Where(r => r.Sitting.StartTime.Date == date.Value.Date);
+        }
+
+        var reservations = await query.ToListAsync();
+
+        // Group by SittingType.Name
+        return reservations
+            .GroupBy(r => r.Sitting?.SittingType?.Name ?? "Unspecified")
+            .ToDictionary(g => g.Key, g => g.ToList());
+    }
 }
+

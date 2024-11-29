@@ -6,7 +6,7 @@ public class Reservation
     public int GuestId { get; set; } // Foreign Key
     public int SittingId { get; set; } // Foreign Key
     public string TableNumber { get; set; } = string.Empty; // will be Dynamically assigned table numbers through the logic in the program
-    public string ReservationStatus { get; set; } = string.Empty; // Status of the reservation (Pending, Confirmed, etc.)
+    public string ReservationStatus { get; set; } = "Pending"; // Defaukt when reservation made. Application logic enforces changes
     public string? SpecialRequests { get; set; } = string.Empty; // Additional requests or preferences from the guest
     public int? PartySize { get; set; }
     public DateTime BookingTime { get; set; } // Date and time the reservation is sched
