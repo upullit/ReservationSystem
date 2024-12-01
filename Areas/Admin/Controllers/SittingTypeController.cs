@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ReservationSystem.Areas.Admin.Controllers
 {
-    [Area("Admin"), Authorize(Roles ="Admin")]
+    [Area("Admin"), Authorize(Roles = "Admin")]
     public class SittingTypeController : Controller
     {
         private readonly ReservationDbContext _context;
@@ -92,7 +92,5 @@ namespace ReservationSystem.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
     }
-
 }

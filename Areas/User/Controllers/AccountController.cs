@@ -85,14 +85,14 @@ namespace ReservationSystem.Areas.User.Controllers
             // Get roles from RoleManager
             var roles = _roleManager.Roles.Select(r => new SelectListItem
             {
-                Value = r.Name,  // Role name is the value
-                Text = r.Name    // Role name is the displayed text
+                Value = r.Name,
+                Text = r.Name
             }).ToList();
 
-            // Initialize the RegisterViewModel and set the Roles property
+            // Initialise the RegisterViewModel and set the Roles property
             var model = new RegisterViewModel
             {
-                Roles = roles  // Make sure Roles is initialized
+                Roles = roles
             };
 
             return View(model);
@@ -145,7 +145,5 @@ namespace ReservationSystem.Areas.User.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
-
     }
-
 }

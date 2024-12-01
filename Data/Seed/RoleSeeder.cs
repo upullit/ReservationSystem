@@ -30,7 +30,7 @@ namespace ReservationSystem.Data.Seed
             if (adminUser == null)
             {
                 adminUser = new IdentityUser { UserName = "admin", Email = "admin@example.com" };
-                var result = await userManager.CreateAsync(adminUser, "Admin@123"); // Set a default password
+                var result = await userManager.CreateAsync(adminUser, "Admin@123");
 
                 if (!result.Succeeded)
                 {
@@ -46,14 +46,11 @@ namespace ReservationSystem.Data.Seed
             // Ensure the admin user is in the "Admin" role
             if (!(await userManager.IsInRoleAsync(adminUser, "Admin")))
             {
-                // Ensure the "Admin" role exists before adding the user to it
                 var roleExists = await roleManager.RoleExistsAsync("Admin");
                 if (!roleExists)
                 {
                     await roleManager.CreateAsync(new IdentityRole("Admin")); // Create the role if it doesn't exist
                 }
-
-                // Add the admin user to the "Admin" role
                 await userManager.AddToRoleAsync(adminUser, "Admin");
             }
 
@@ -64,7 +61,7 @@ namespace ReservationSystem.Data.Seed
             if (staffUser == null)
             {
                 staffUser = new IdentityUser { UserName = "staff", Email = "staff@example.com" };
-                var result = await userManager.CreateAsync(staffUser, "Staff@123"); // Set a default password
+                var result = await userManager.CreateAsync(staffUser, "Staff@123");
 
                 if (!result.Succeeded)
                 {
@@ -80,18 +77,14 @@ namespace ReservationSystem.Data.Seed
             // Ensure the staff user is in the "Staff" role
             if (!(await userManager.IsInRoleAsync(staffUser, "Staff")))
             {
-                // Ensure the "Staff" role exists before adding the user to it
                 var roleExists = await roleManager.RoleExistsAsync("Staff");
                 if (!roleExists)
                 {
                     await roleManager.CreateAsync(new IdentityRole("Staff")); // Create the role if it doesn't exist
                 }
-
-                // Add the staff user to the "Staff" role
                 await userManager.AddToRoleAsync(staffUser, "Staff");
             }
         }
-
     }
 }
 

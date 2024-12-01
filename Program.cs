@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-
 // Configure the DbContext with SQL Server
 builder.Services.AddDbContext<ReservationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -70,7 +69,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-
 using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;
@@ -99,6 +97,5 @@ app.MapControllerRoute(
     name: "userAccountRegister",
     pattern: "{area=User}/Account/Register",
     defaults: new { controller = "Account", action = "Register" });
-
 
 app.Run();

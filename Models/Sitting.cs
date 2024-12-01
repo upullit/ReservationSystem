@@ -8,7 +8,6 @@
         public DateTime EndTime { get; set; } // End time for the sitting period
         public int MaxCapacity { get; set; } // Maximum number of guests allowed for the sitting
         public bool SittingisAvaliable { get; set; } = true;
-
         public SittingType? SittingType { get; set; }
 
         // Navigation Properties

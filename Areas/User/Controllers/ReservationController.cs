@@ -40,15 +40,11 @@ namespace ReservationSystem.Areas.User.Controllers
             return View(reservation); // Pass the reservation to the view
         }
 
-
         public IActionResult Create()
         {
             ViewBag.OpeningTimes = ReservationService.OpeningTimes;
             return View();
         }
-
-
-
 
         [HttpPost]
         public async Task<IActionResult> Create(string guestName, int partySize, DateTime date,
@@ -127,7 +123,6 @@ namespace ReservationSystem.Areas.User.Controllers
             return View();
         }
 
-
         // GET: ReservationController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -166,7 +161,6 @@ namespace ReservationSystem.Areas.User.Controllers
         {
             return View();
         }
-
 
         // POST: ReservationController/Delete/5
         [HttpPost]

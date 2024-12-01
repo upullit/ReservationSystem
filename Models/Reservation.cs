@@ -12,7 +12,6 @@ public class Reservation
     public DateTime BookingTime { get; set; } // Date and time the reservation is sched
     public DateTime CreatedAt { get; set; } // Date and time the reservation was created
     public DateTime UpdatedAt { get; set; } // Date and time the reservation was last updated
-
     // Navigation Properties
     public Guest? Guest { get; set; }
     public Sitting? Sitting { get; set; }

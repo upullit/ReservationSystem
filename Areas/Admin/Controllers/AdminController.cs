@@ -16,9 +16,5 @@ namespace ReservationSystem.Areas.Admin.Controllers
         {
             return View();
         }
-
-
-
     }
-
 }

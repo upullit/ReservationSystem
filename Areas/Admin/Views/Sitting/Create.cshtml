@@ -10,7 +10,7 @@
 <form asp-area="Admin" asp-controller="Sitting" asp-action="Create" method="post">
     <div class="mb-3">
         <label asp-for="SittingTypeId" class="form-label">Type</label>
-        <select asp-for="SittingTypeId" class="form-control" asp-items="ViewBag.SittingTypes" ></select>
+        <select asp-for="SittingTypeId" class="form-control" asp-items="ViewBag.SittingTypes"></select>
         <span asp-validation-for="SittingTypeId" class="text-danger"></span>
     </div>
     <div class="mb-3">

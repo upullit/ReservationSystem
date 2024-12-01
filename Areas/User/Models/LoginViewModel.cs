@@ -16,6 +16,4 @@ namespace ReservationSystem.Areas.User.Models
         [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
     }
-
-
 }

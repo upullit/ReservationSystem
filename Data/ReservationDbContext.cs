@@ -10,7 +10,6 @@ namespace ReservationSystem.Data
         public ReservationDbContext(DbContextOptions<ReservationDbContext> options) : base(options)
         {
         }
-
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Sitting> Sittings { get; set; }

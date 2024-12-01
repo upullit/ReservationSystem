@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReservationSystem.Areas.Admin.Controllers
 {
-    [Area("Admin"), Authorize(Roles ="Admin")]
-    //[Authorize(Roles = "Admin")]
+    [Area("Admin"), Authorize(Roles = "Admin")]
     public class SittingController : Controller
     {
         private readonly ReservationDbContext _context;
@@ -63,7 +62,6 @@ namespace ReservationSystem.Areas.Admin.Controllers
             return View();
         }
 
-
         public async Task<IActionResult> Index()
         {
             var sittings = await _context.Sittings
@@ -72,8 +70,6 @@ namespace ReservationSystem.Areas.Admin.Controllers
                                           .ToListAsync();
             return View(sittings);
         }
-
-
 
         // Post Sitting create
         [HttpPost]
@@ -109,7 +105,6 @@ namespace ReservationSystem.Areas.Admin.Controllers
             return View("Create", newSitting); // Ensure the view is re-rendered properly
         }
 
-
         // Delete Sitting
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
@@ -135,6 +130,5 @@ namespace ReservationSystem.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
     }
 }

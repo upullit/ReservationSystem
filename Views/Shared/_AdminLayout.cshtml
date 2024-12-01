@@ -22,7 +22,6 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <!-- Links visible for Admin role -->
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
@@ -42,10 +41,7 @@
                                         <li><a class="dropdown-item" asp-area="Admin" asp-controller="SittingType" asp-action="Create">Sitting Type Creation</a></li>
                                     </ul>
                                 </li>
-
                             }
-
-                            <!-- Links visible for Staff role -->
                             @if (User.IsInRole("Staff"))
                             {
                                 <li class="nav-item">

@@ -9,5 +9,4 @@ public class Guest
 
     // Navigation Properties
     public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
-
 }
