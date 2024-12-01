@@ -1,14 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem.Areas.User.Services;
 using ReservationSystem.Data;
+using ReservationSystem.Data.Seed;
 using MyReservationSystem.Services;
-using System.Globalization; // Import the namespace for CultureInfo
+using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Get the connection string for the database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
 
 // Configure the DbContext with SQL Server
 builder.Services.AddDbContext<ReservationDbContext>(options =>
@@ -23,9 +26,19 @@ builder.Services.AddScoped<ReservationService>();
 // Register MenuService with HttpClient
 builder.Services.AddHttpClient<MenuService>();
 
+builder.Logging.AddConsole(); // For logging to the console
+
 // Register Automatic Reservation Status Update set Reservations to completed for past dates
 builder.Services.AddHostedService<ReservationStatusUpdater>();
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ReservationDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/User/Account/Login"; // This ensures users are redirected to the login page when they try to access a protected area.
+});
 
 // Set the default culture for the application
 var cultureInfo = new CultureInfo("en-AU");
@@ -37,11 +50,11 @@ CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 var app = builder.Build();
 
 // Seed the database
-//using (var scope = app.Services.CreateScope())
-//{
-//    var context = scope.ServiceProvider.GetRequiredService<ReservationDbContext>();
-//    Sittings.Seed(context); // Call the seeder
-//}
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ReservationDbContext>();
+    Sittings.Seed(context); // Call the seeder
+}
 
 // Configure the HTTP request pipeline for development and production
 if (!app.Environment.IsDevelopment())
@@ -50,10 +63,20 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios.
     app.UseHsts();
 }
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    await RoleSeeder.SeedRoles(serviceProvider); // Seed roles
+    await RoleSeeder.AssignRoles(serviceProvider); // Assign roles to admin user
+}
 
 // Enable areas routing
 app.MapControllerRoute(
@@ -67,6 +90,15 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "menuDefault",
     pattern: "{controller=Menu}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "userAccountLogin",
+    pattern: "{area=User}/Account/Login",
+    defaults: new { controller = "Account", action = "Login" });
+
+app.MapControllerRoute(
+    name: "userAccountRegister",
+    pattern: "{area=User}/Account/Register",
+    defaults: new { controller = "Account", action = "Register" });
 
 
 app.Run();

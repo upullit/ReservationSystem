@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReservationSystem.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Roles ="Admin")]
     //[Authorize(Roles = "Admin")]
     public class SittingController : Controller
     {

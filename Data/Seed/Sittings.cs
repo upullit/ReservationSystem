@@ -6,21 +6,33 @@ namespace ReservationSystem.Data.Seed
     {
         public static void Seed(ReservationDbContext context)
         {
+            // Ensure SittingTypes are seeded first
+            if (!context.SittingTypes.Any())
+            {
+                var sittingTypes = new List<SittingType>
+                {
+                    new SittingType { Name = "Breakfast" },
+                    new SittingType { Name = "Lunch" },
+                    new SittingType { Name = "Dinner" }
+                };
+
+                context.SittingTypes.AddRange(sittingTypes);
+                context.SaveChanges();
+            }
+
+            // Fetch SittingType IDs
+            var breakfastType = context.SittingTypes.First(st => st.Name == "Breakfast").Id;
+            var lunchType = context.SittingTypes.First(st => st.Name == "Lunch").Id;
+            var dinnerType = context.SittingTypes.First(st => st.Name == "Dinner").Id;
+
             // Check if there are already sittings in the database
             if (!context.Sittings.Any())
             {
-                // Get SittingType Ids (fallback to default Ids if not found)
-                var breakfastType = context.SittingTypes.FirstOrDefault(st => st.Name == "Breakfast")?.Id ?? 1;
-                var lunchType = context.SittingTypes.FirstOrDefault(st => st.Name == "Lunch")?.Id ?? 2;
-                var dinnerType = context.SittingTypes.FirstOrDefault(st => st.Name == "Dinner")?.Id ?? 3;
-
-                // Create a list to hold sittings
                 var sittings = new List<Sitting>();
 
                 // Generate sittings for November and December
                 for (var date = new DateTime(2024, 11, 1); date <= new DateTime(2024, 12, 31); date = date.AddDays(1))
                 {
-                    // Breakfast sitting (7:00 AM - 11:30 AM)
                     sittings.Add(new Sitting
                     {
                         StartTime = date.AddHours(7),
@@ -29,7 +41,6 @@ namespace ReservationSystem.Data.Seed
                         MaxCapacity = 100
                     });
 
-                    // Lunch sitting (12:00 PM - 3:30 PM)
                     sittings.Add(new Sitting
                     {
                         StartTime = date.AddHours(12),
@@ -38,7 +49,6 @@ namespace ReservationSystem.Data.Seed
                         MaxCapacity = 100
                     });
 
-                    // Dinner sitting (5:00 PM - 9:30 PM)
                     sittings.Add(new Sitting
                     {
                         StartTime = date.AddHours(17),

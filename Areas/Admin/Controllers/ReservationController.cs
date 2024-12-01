@@ -5,6 +5,7 @@ using ReservationSystem.Areas.User.Services;
 using ReservationSystem.Data;
 using ReservationSystem.Models;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ReservationSystem.Areas.Admin.Controllers;
 

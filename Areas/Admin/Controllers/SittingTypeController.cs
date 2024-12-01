@@ -2,10 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem.Data;
 using ReservationSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ReservationSystem.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Roles ="Admin")]
     public class SittingTypeController : Controller
     {
         private readonly ReservationDbContext _context;

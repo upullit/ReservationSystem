@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bean Scene</title>
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="icon" href="~/favicon.ico?v=1" type="image/x-icon" />
 
 </head>
@@ -19,26 +20,52 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <!-- Links visible for Admin role -->
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reservation" asp-action="Index">Reservation Management</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Sittings Management
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Sitting" asp-action="Index">Sittings Management</a></li>
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Sitting" asp-action="Create">Sittings Creation</a></li>
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="SittingType" asp-action="Index">Sitting Type Management</a></li>
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="SittingType" asp-action="Create">Sitting Type Creation</a></li>
+                                    </ul>
+                                </li>
+
+                            }
+
+                            <!-- Links visible for Staff role -->
+                            @if (User.IsInRole("Staff"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reservation" asp-action="Index">Reservation Management</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="User" asp-controller="Home" asp-action="Index">User Pages</a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                            <a class="nav-link" href="@Url.Action("Logout", "Account", new { area = "User"})">Logout</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Reservation" asp-action="Index">Reservation Management</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sitting" asp-action="Index">Sittings Management</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sitting" asp-action="Create">Sittings Creation</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="SittingType" asp-action="Index">Sitting Type Management</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="SittingType" asp-action="Create">Sitting Type Creation</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="User" asp-controller="Home" asp-action="Index">User</a>
+                            <a class="nav-link" href="#">Hi, @User.Identity.Name</a>
                         </li>
                     </ul>
                 </div>

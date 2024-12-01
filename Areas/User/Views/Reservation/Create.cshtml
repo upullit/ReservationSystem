@@ -15,7 +15,9 @@
 <p class="lead mb-3" style="line-height: 1.6";> Making a reservation allows us to prepare for your arrival, ensuring that we provide you with the highest level of service and a memorable dining experience. Our team is dedicated to creating a welcoming atmosphere, filled with laughter and the delightful aroma of delicious food. Whether you’re planning a casual brunch with friends, a cozy family dinner, or a special occasion celebration, booking a table in advance helps us ensure that every detail is taken care of, so you can relax and enjoy your time with us.</p>
 </div>
 
-<h2>Make a Reservation</h2>
+<div class="flex-container rounded-5 p-4 border" style="background-color: #B19470; border-radius: 1.5rem;">
+
+<h2 style="color: #251605;">Make a Reservation</h2>
 @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
 {
     <div class="alert alert-danger" role="alert">
@@ -23,16 +25,16 @@
     </div>
 }
 <form asp-action="Create" method="post">
-    <div class="row mb-3">
-        <div class="col-md-6">
+    <div>
+        <div class="row mb-3">
             @* Date Selection *@
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="date" class="form-label">Select Date</label>
                 <input type="date" class="form-control" id="date" name="date" required />
             </div>
 
             @* Time Slot Selection *@
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="timeSlot" class="form-label">Select Time</label>
                 <select class="form-select" id="timeSlot" name="timeSlot" required>
                     <option selected disabled>Select Time</option>
@@ -49,34 +51,16 @@
                     }
                 </select>
             </div>
-        </div>
 
-        <div class="row mb-3">
-           @* Party Size *@
+            @* Party Size *@
             <div class="col-md-4">
                 <label for="partySize" class="form-label">Party Size</label>
                 <input type="number" class="form-control" id="partySize" name="partySize" min="1" max="20" required />
             </div>
-
-            @* Sitting Area *@
-            <div class="col-md-4">
-                <label for="sittingArea" class="form-label">Preferred Sitting Area</label>
-                <select class="form-select" id="sittingArea" name="sittingArea" required>
-                    <option selected disabled>Select Area</option>
-                    <option value="Indoor Restaurant">Indoor Restaurant</option>
-                    <option value="Outdoor">Outdoor</option>
-                    <option value="Bar Area">Bar Area</option>
-                </select>
-            </div>
-
-            @* Phone Number *@
-            <div class="col-md-4">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="phone" name="phone" required />
-            </div>
         </div>
 
         <div class="row mb-3">
+
             @* Guest Name *@
             <div class="col-md-4">
                 <label for="guestName" class="form-label">Name</label>
@@ -89,8 +73,28 @@
                 <input type="email" class="form-control" id="email" name="email" required />
             </div>
 
-            @* Special Requests *@
+            @* Phone Number *@
             <div class="col-md-4">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" required />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+
+            @* Sitting Area *@
+            <div class="col-md-4">
+                <label for="sittingArea" class="form-label">Preferred Sitting Area</label>
+                <select class="form-select" id="sittingArea" name="sittingArea" required>
+                    <option selected disabled>Select Area</option>
+                    <option value="Indoor Restaurant">Indoor Restaurant</option>
+                    <option value="Outdoor">Outdoor</option>
+                    <option value="Bar Area">Bar Area</option>
+                </select>
+            </div>
+
+            @* Special Requests *@
+            <div class="col-md-8">
                 <label for="specialRequests" class="form-label">Special Requests</label>
                 <textarea class="form-control" id="specialRequests" name="specialRequests"></textarea>
             </div>
@@ -99,4 +103,6 @@
         <div class="text-center mt-3">
             <button type="submit" class="btn btn-primary">Submit Reservation</button>
         </div>
+    </div>
 </form>
+</div>
